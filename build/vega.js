@@ -7086,7 +7086,10 @@ prototype$20.transform = function(_, pulse) {
   // remove any previous results
   out.rem = this.value;
 
-  out.add.push.apply(elasticFlatten(pulse.source, leafnode));
+  console.log(pulse.source);
+  var flattened = elasticFlatten(pulse.source, leafnode);
+  console.log(flattened);
+  out.add.push.apply(flattened);
 
   this.value = out.source = out.add;
   return out;
