@@ -3141,6 +3141,8 @@ function definition(type) {
 
 function transform$1(type) {
   type = type && type.toLowerCase();
+  console.log(type);
+  console.log(transforms);
   return transforms.hasOwnProperty(type) ? transforms[type] : null;
 }
 
