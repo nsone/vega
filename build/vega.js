@@ -7104,7 +7104,8 @@ function elasticFlatten(obj, leafNodeProperty, keyName) {
 		var arrLen = obj.length;
 
 		for(i = 0; i < arrLen;i++) {
-			incomingArrayOfHashes.concat(elasticFlatten(obj[i], leafNodeProperty, keyName));
+			var flattened = elasticFlatten(obj[i], leafNodeProperty, keyName);
+			incomingArrayOfHashes = incomingArrayOfHashes.concat(flattened);
 		}
 	} else if(obj instanceof Object) {
 		var hashKey;
