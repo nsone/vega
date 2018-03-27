@@ -5217,9 +5217,7 @@ prototype$20.transform = function(_$$1, pulse) {
   // remove any previous results
   out.rem = this.value;
 
-  pulse.visit(pulse.SOURCE, function(t) {
-	out.add.push.apply(elasticFlatten(t, leafnode));
-  });
+  out.add.push.apply(elasticFlatten(pulse.source, leafnode));
 
   this.value = out.source = out.add;
   return out;
