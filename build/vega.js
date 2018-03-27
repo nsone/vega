@@ -4633,8 +4633,6 @@ function definition(type) {
 
 function transform$1(type) {
   type = type && type.toLowerCase();
-  console.log(type);
-  console.log(transforms);
   return transforms.hasOwnProperty(type) ? transforms[type] : null;
 }
 
@@ -7093,8 +7091,8 @@ prototype$20.transform = function(_, pulse) {
 };
 
 function elasticFlatten(obj, leafNodeProperty, keyName) {
-	keyName = typeof keyName !== 'undefined' ? keyName : "none";
-	var incomingArrayOfHashes = [];
+
+  var incomingArrayOfHashes = [];
 	var myArrayHead = {};
 
    	var i = 0;
@@ -7117,7 +7115,7 @@ function elasticFlatten(obj, leafNodeProperty, keyName) {
 		 * Those buckets will then be given a property called "the_date" that will contain the unix timestamp found in their "key" properties.
 		*/
 
-		if("key" in obj) {
+    if("key" in obj && keyName) {
 			obj[keyName] = obj.key;
 		}
 
@@ -8583,7 +8581,7 @@ var tx = Object.freeze({
 	field: Field,
 	filter: Filter,
 	flatten: Flatten,
-	elasticFlatten: ElasticFlatten,
+	elasticflatten: ElasticFlatten,
 	fold: Fold,
 	formula: Formula,
 	generate: Generate,

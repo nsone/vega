@@ -3464,6 +3464,9 @@
           "$ref": "#/defs/flattenTransform"
         },
         {
+          "$ref": "#/defs/elasticflattenTransform"
+        },
+        {
           "$ref": "#/defs/foldTransform"
         },
         {
@@ -4522,6 +4525,34 @@
       "required": [
         "type",
         "fields"
+      ]
+    },
+    "elasticflattenTransform": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "elasticflatten"
+          ]
+        },
+        "signal": {
+          "type": "string"
+        },
+        "leafnode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/refs/signal"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "leafnode"
       ]
     },
     "foldTransform": {
