@@ -7087,11 +7087,18 @@ prototype$20.transform = function(_, pulse) {
 	out.rem = this.value;
 	
 	
-
-	this.value = out.source = out.add = elasticFlatten(pulse.source, leafnode);
+	var flattenedData = elasticFlatten(pulse.source, leafnode);
+	var fltDataLen = flattenedData.length;
 	
+	for(var i = 0; i < fltDataLen; i++) {
+		ingest(flattenedData[i]);
+	}		
+	
+	this.value = out.source = out.add = flattenedData;
+	
+	// Not entirely sure we need this.  We seem to get the same results by just returning out without further operations.
+	// It might be needed depending on what get's done after this transform is used, but that's unknown at the moment. :D
 	var alteredFields = fieldNames([leafnode], (out.add.length ? Object.keys(out.add[0]) : []));
-	
 	return out.modifies(alteredFields);
 };
 
@@ -7106,6 +7113,8 @@ function elasticFlatten(obj, leafNodeProperty, keyName) {
 
 		for(i = 0; i < arrLen;i++) {
 			var flattened = elasticFlatten(obj[i], leafNodeProperty, keyName);
+			 // Whether this is the best or not for speed seems quite browser-specific, with chrome favoring concat: https://jsperf.com/multi-array-concat/7
+			 // Oddly, another for-loop here seems to be the most predictable across browsers.
 			incomingArrayOfHashes = incomingArrayOfHashes.concat(flattened);
 		}
 	} else if(obj instanceof Object) {
