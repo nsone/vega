@@ -4547,6 +4547,37 @@
               "$ref": "#/refs/signal"
             }
           ]
+        },
+        "noclobber": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/refs/signal"
+            }
+          ]
+        },
+        "ignorefields": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/refs/signal"
+                  }
+                ]
+              }
+            },
+            {
+              "$ref": "#/refs/signal"
+            }
+          ],
+          "default": []
         }
       },
       "additionalProperties": false,
