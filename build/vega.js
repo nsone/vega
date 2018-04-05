@@ -7084,8 +7084,8 @@ var prototype$20 = inherits(ElasticFlatten, Transform);
 prototype$20.transform = function(_, pulse) {
 	var out = pulse.fork(pulse.NO_SOURCE),
     	leafnode = _.leafnode,
-    	noclobber = _.noclobber,
-    	ignorefields = _.ignorefields;
+    	noclobber = _.noclobber || false,
+    	ignorefields = _.ignorefields || [];
 
 	// remove any previous results
 	out.rem = this.value;
